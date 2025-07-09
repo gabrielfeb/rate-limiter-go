@@ -6,8 +6,6 @@ services:
     container_name: go_rate_limiter_app
     ports:
       - "8080:8080"
-    volumes:
-      - .:/app
     depends_on:
       - redis
     env_file:
