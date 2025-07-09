@@ -10,9 +10,9 @@ RUN go mod download
 # Copy the rest of the source code
 COPY . .
 
-# Build the application
+# Build the application pointing to the new location of main.go
 # -ldflags="-w -s" strips debug information, reducing binary size
-RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -o /rate-limiter-app ./main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -o /rate-limiter-app ./app/main.go
 
 # Stage 2: Create the final, minimal image
 FROM alpine:latest
