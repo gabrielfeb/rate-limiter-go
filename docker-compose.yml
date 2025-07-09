@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: go_rate_limiter_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+    env_file:
+      - .env
+
+  redis:
+    image: "redis:7-alpine"
+    container_name: redis_db
+    ports:
+      - "6379:6379"
+    # Para usar o data persist descomentar a linha abaixo
+    # volumes:
+    #   - redis-data:/data
+
+volumes:
+  redis-data:
